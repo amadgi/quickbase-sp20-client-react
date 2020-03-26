@@ -1,0 +1,42 @@
+.shift-right{
+  position: relative;
+  left: 92%;
+}
+
+.custom{
+  font-size: 1.25rem;
+}
+
+.custom-block{
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.custom-error{
+  border-color: red;
+}
+
+.custom-color, a:hover{
+  color: red;
+}
+
+.custom-message{
+  color: dodgerblue;
+}
+
+.background{
+  background-image: url("../images/background.jpg");
+}
+
+.border{
+  border-style: solid;
+  border-color: #e3f2fd;
+  border-width: thin;
+}
+
+.nav-color{
+  background-color: #e3f2fd;
+}
