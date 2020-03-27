@@ -20,7 +20,7 @@ class ChoiceComponent extends React.Component {
   render() {
     return (
         <div className="content">
-          <li className="list-group-item ">
+          <li className="list-group-item item" onClick={()=>this.props.setDefault(this.state.choice)}>
             <span>
               <span>{this.state.choice.substring(0, 39)}</span>
               <span className="custom-color">

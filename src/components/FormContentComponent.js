@@ -34,6 +34,8 @@ class FormContentComponent extends React.Component {
         showDuplicateError: this.data.showDuplicateError
       });
       sessionStorage.setItem('prevFieldService', JSON.stringify(this.data))
+    }else{
+      sessionStorage.setItem('prevFieldService', JSON.stringify(this.state))
     }
   }
 
@@ -59,6 +61,18 @@ class FormContentComponent extends React.Component {
         default: e.target.value
       }
     }, function () {
+      localStorage.setItem("fieldService",
+          JSON.stringify(this.state))
+    })
+  };
+
+  setDefault = (choice) => {
+    this.setState({
+      fieldService: {
+        ...this.state.fieldService,
+      default: choice
+      }
+    }, ()=>{
       localStorage.setItem("fieldService",
           JSON.stringify(this.state))
     })
@@ -184,8 +198,7 @@ class FormContentComponent extends React.Component {
 
   saveFieldService = async () => {
     localStorage.setItem("fieldService", JSON.stringify(this.state));
-    sessionStorage.clear();
-    const fieldJson = await postFieldService(this.state.fieldService)
+    const fieldJson = await postFieldService(this.state.fieldService);
     if (fieldJson.status === "success") {
       alert("Saved successfully!!")
     }
@@ -313,6 +326,7 @@ class FormContentComponent extends React.Component {
                             key={index}
                             choice={choice}
                             deleteChoice={this.deleteChoice}
+                            setDefault={this.setDefault}
                         />
                     )}
                   </ul>
