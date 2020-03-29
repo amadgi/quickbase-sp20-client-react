@@ -18,10 +18,15 @@ class ChoiceComponent extends React.Component {
   };
 
   render() {
+    let selected = ['list-group-item item'];
+    if(this.state.choice === this.props.default){
+      selected.push('highlight')
+    }
+
     return (
         <div className="content">
-          <li className="list-group-item item" onClick={()=>this.props.setDefault(this.state.choice)}>
-            <span>
+          <li className={selected.join(' ')}>
+            <span onClick={()=>this.props.setDefault(this.state.choice)} className="mouse-pointer">
               <span>{this.state.choice.substring(0, 39)}</span>
               <span className="custom-color">
                 {this.state.choice.substring(39)}

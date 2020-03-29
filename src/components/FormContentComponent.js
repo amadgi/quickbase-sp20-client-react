@@ -8,32 +8,33 @@ import {DUPLICATE_MSG, LABEL_FLD_MSG, MAX_LIMIT_MSG} from "../common/constants";
 
 class FormContentComponent extends React.Component {
 
-  state = {
-    fieldService: {
-      "label": "",
-      "required": false,
-      "choices": [],
-      "displayAlpha": true,
-      "default": ""
-    },
-    maxLimit: 50,
-    showLabelError: false,
-    showChoicesError: false,
-    showDuplicateError: false
-  };
-
-  data;
+  constructor(props){
+    super(props);
+    this.state = {
+      fieldService: {
+        "label": "",
+        "required": false,
+        "choices": [],
+        "displayAlpha": true,
+        "default": ""
+      },
+      maxLimit: 50,
+      showLabelError: false,
+      showChoicesError: false,
+      showDuplicateError: false
+    }
+  }
 
   componentDidMount() {
-    this.data = JSON.parse(localStorage.getItem('fieldService'));
+    let data = JSON.parse(localStorage.getItem('fieldService'));
     if (localStorage.getItem('fieldService')) {
       this.setState({
-        fieldService: this.data.fieldService,
-        showLabelError: this.data.showLabelError,
-        showChoicesError: this.data.showChoicesError,
-        showDuplicateError: this.data.showDuplicateError
+        fieldService: data.fieldService,
+        showLabelError: data.showLabelError,
+        showChoicesError: data.showChoicesError,
+        showDuplicateError: data.showDuplicateError
       });
-      sessionStorage.setItem('prevFieldService', JSON.stringify(this.data))
+      sessionStorage.setItem('prevFieldService', JSON.stringify(data))
     }else{
       sessionStorage.setItem('prevFieldService', JSON.stringify(this.state))
     }
@@ -136,6 +137,7 @@ class FormContentComponent extends React.Component {
   };
 
   isPresent = (updatedChoice) => {
+    // console.log(updatedChoice.trim())
     if (this.state.fieldService.choices.includes(updatedChoice)) {
       this.setState({
         showDuplicateError: true
@@ -192,7 +194,7 @@ class FormContentComponent extends React.Component {
         this.saveFieldService()
       })
     } else {
-      alert("Add default value")
+      alert("Select default value")
     }
   };
 
@@ -327,6 +329,7 @@ class FormContentComponent extends React.Component {
                             choice={choice}
                             deleteChoice={this.deleteChoice}
                             setDefault={this.setDefault}
+                            default={this.state.fieldService.default}
                         />
                     )}
                   </ul>

@@ -14,9 +14,14 @@
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.item:hover{
-  background-color: lightskyblue;
+.item:hover, .highlight{
+  background-color: #e3f2fd;
 }
+
+.mouse-pointer{
+  cursor: pointer;
+}
+
 .custom-error{
   border-color: red;
 }
